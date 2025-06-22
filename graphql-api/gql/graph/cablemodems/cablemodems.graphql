@@ -1,0 +1,131 @@
+type CableModems {
+  byMac(macAddress: [String!]!, rdsEnable: Boolean! = true): [CableModem!]!
+  byCmts(
+    cmts: String!
+    state: State
+    docsis: DocsisVersion
+    single: Boolean = false
+    rdsEnable: Boolean! = true
+  ): [CableModem!]!
+  byPoller(
+    poller: PollerType!,
+    cmts: String!,
+    state: State,
+    docsis: DocsisVersion,
+    rdsEnable: Boolean! = true
+  ): [CableModem!]!
+  paged(
+    "filter dataset using fqdn(Required) + macDomain(Optional), ppodName, Array of macAddress...."
+    filter: CableModemsFilter
+    "grab first 100 records (limit)"
+    first: Int = 100
+    "endCursor of the last call (used for pagination)"
+    after: String
+  ): CableModemsConnection
+  historicalRegState(mac: [String!], period: HistoricalPeriod!): [TsRegStateDevice!]
+  historicalCm(mac: [String!]!): [TsCmDevice!]
+}
+
+type TsRegStateDevice {
+  mac: String
+  time: Int
+  regState: Int
+}
+
+type TsCmDevice {
+  mac: String
+  time: Int
+  lostSync: Int
+  resets: Int
+  cableDownstream: [TsCableDownstream]
+  cableUpstream: [TsCableUpstream]
+  cableUpstreamStatus: [TsCableUpstreamStatus]
+  ofdmDownstream: [TsOfdmDownstream]
+}
+
+type TsCableDownstream {
+  ifIndex: Int
+  channelPower: String
+  unerroreds: String
+  correcteds: String
+  uncorrectables: String
+  signalNoiseDecibel: String
+}
+
+type TsCableUpstream {
+  ifIndex: Int
+  statusTxPower: String
+  statusT3Timeouts: Int
+  statusT4Timeouts: Int
+}
+
+type TsCableUpstreamStatus {
+  ifDescr: String
+  snr: String
+  rxPower: String
+}
+
+type TsOfdmDownstream {
+  ifIndex: Int
+  rxMerMean: String
+  rxMer2ndPercentile: String
+  profileStats: [TsCmOfdmChannelProfileStats]
+  ofdmDsChannelPower: [TsCmOfdmChannelPower]
+}
+
+type TsCmOfdmChannelProfileStats {
+  cmtsProfileId: Int
+  correctedCodewords: String
+  uncorrectableCodeword: String
+  totalCodewords: String
+}
+
+type TsCmOfdmChannelPower {
+  channelBandIndex: Int
+  centerFrequency: Int
+  rxPower: String
+}
+
+type CableModemsConnection {
+  edges: [CableModem!]!
+  pageInfo: PageInfo
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: String!
+}
+
+enum PollerType {
+  LOW_SPECTRUM
+  FULL_SPECTRUM
+  CMTS
+  CM_CERT
+  REG_STATE
+  RX_MER
+  POWER_SUPPLY
+  HMS_TRAPS
+  CM_ATTRIBUTE_DISCOVERY
+  MTA_INVENTORY
+}
+
+enum HistoricalPeriod {
+  Minutely
+  Hourly
+}
+
+input StringFilterEqIn {
+  eq: String
+  in: [String]
+}
+
+input CableModemsFilter {
+  docsisVersion: DocsisVersion
+  dsInterface: String
+  fqdn: String
+  ppod: String
+  fiberNode: String
+  transponder: Boolean
+  macDomain: String
+  macAddress: StringFilterEqIn
+}

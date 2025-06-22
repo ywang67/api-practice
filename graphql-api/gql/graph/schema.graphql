@@ -1,0 +1,72 @@
+scalar Time
+enum State {
+  Online
+  Offline
+}
+
+enum DocsisVersion {
+  Docsis3
+  Docsis31
+  Docsis4
+}
+
+type CableModem {
+  mac: String! # primary key
+  cpeMac: String
+  macDomain: String
+  cableModemIndex: Int
+  configFile: String
+  model: String
+  fiberNode: String
+  ipv4: String
+  ipv6: String
+  cpeIpv4: String
+  transponder: String
+  docsisVersion: DocsisVersion
+  ppod: String # a CMTS has this OR FQDN but not both.
+  fqdn: String # a CMTS has this OR PPOD, but not both.
+  state: State
+  notFoundDate: String # YYYYMMDD
+  regState: Int
+  fnName: String
+  numberOfGenerators: Int
+  rpdName: String
+  updatedAt: String
+  bootr: String
+  vendor: String
+  swRev: String
+  oltName: String
+  ponName: String
+  updatedAtTs: Int
+  isCPE: Boolean
+  cmtsType: String
+  """
+  This attribute represents the current type of device. metroe(1)
+  """
+  deviceType: Int
+}
+
+type Query {
+  cableModems: CableModems!
+}
+
+type Todo {
+  id: ID!
+  text: String!
+  done: Boolean!
+  user: User!
+}
+
+type User {
+  id: ID!
+  name: String!
+}
+
+input NewTodo {
+  text: String!
+  userId: String!
+}
+
+type Mutation {
+  createTodo(input: NewTodo!): Todo!
+}
