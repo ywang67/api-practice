@@ -1,5 +1,5 @@
 dev-server:
-	DEBUG=true LOCAL=true go run main.go
+	reflex -r '\.go$$' -s -- sh -c 'DEBUG=true LOCAL=true go run main.go'
 
 gen:
 	go generate ./...

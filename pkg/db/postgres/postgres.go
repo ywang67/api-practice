@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 
+	_ "github.com/lib/pq"
 	"github.com/rs/zerolog/log"
 )
 
@@ -31,6 +32,9 @@ func (rdsPgs *Rds_Postgres) newDefaultClient() (*sql.DB, error) {
 	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s",
 		host, dbPort, username, password, username,
 	)
+	if isDebug {
+		dsn += " sslmode=disable"
+	}
 
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {

@@ -18,7 +18,7 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) 
 
 // CableModems is the resolver for the cableModems field.
 func (r *queryResolver) CableModems(ctx context.Context) (*cablemodems.CableModems, error) {
-	panic(fmt.Errorf("not implemented: CableModems - cableModems"))
+	return stubModemsResolver, nil
 }
 
 // Mutation returns MutationResolver implementation.

@@ -13,7 +13,7 @@ import (
 
 // ByMac is the resolver for the byMac field.
 func (r *cableModemsResolver) ByMac(ctx context.Context, obj *cablemodems.CableModems, macAddress []string) ([]*model.CableModem, error) {
-	panic(fmt.Errorf("not implemented: ByMac - byMac"))
+	return cablemodems.ByMacRds(ctx, r.DBRead, macAddress)
 }
 
 // ByCmts is the resolver for the byCmts field.

@@ -12,8 +12,7 @@ var (
 	}
 )
 
-func Init() {
-
+func init() {
 	db, err := DbService.FetchDbConn()
 	if err != nil {
 		panic("postgresDB connection initialization with error failed")
