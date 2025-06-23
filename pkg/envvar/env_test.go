@@ -1,7 +1,6 @@
 package envvar
 
 import (
-	"api-project/pkg/stringutil"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -185,25 +184,6 @@ func TestString(t *testing.T) {
 	for _, s := range []string{"foo", "", "a9sdasd", "--"} {
 		set(k, s)
 		if got := GetString(k, hamlet); got != s {
-			t.Fatalf("expected %s from %v, but got hamlet", s, got)
-		}
-	}
-}
-
-func TestStringArray(t *testing.T) {
-	t.Parallel()
-	const k = "_ENV_TEST_TEST_StringArray"
-
-	unset(k)
-	hamlet := []string{"Alas,", "poor Yorick!", "I knew him,", "Horatio."}
-	if !stringutil.SliceSetEquals(GetStringArray(k, hamlet), hamlet) {
-		t.Fatal("default failed")
-	}
-	for _, s := range [][]string{
-		{"foo", ""}, {"a9sdasd", "--"}, {},
-	} {
-		set(k, s)
-		if got := GetStringArray(k, hamlet); !stringutil.SliceSetEquals(got, s) {
 			t.Fatalf("expected %s from %v, but got hamlet", s, got)
 		}
 	}

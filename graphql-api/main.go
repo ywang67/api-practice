@@ -2,6 +2,7 @@ package main
 
 import (
 	"api-project/graphql-api/gql/graph"
+	"api-project/pkg/dbservice"
 	"log"
 	"net/http"
 	"os"
@@ -22,7 +23,11 @@ func main() {
 		port = defaultPort
 	}
 
-	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+	dbService := dbservice.DbService
+	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
+		DBRead:  dbService.DbReader,
+		DBWrite: dbService.DbWriter,
+	}}))
 
 	srv.AddTransport(transport.Options{})
 	srv.AddTransport(transport.GET{})

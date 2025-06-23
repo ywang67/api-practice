@@ -83,9 +83,9 @@ type ComplexityRoot struct {
 	}
 
 	CableModems struct {
-		ByCmts             func(childComplexity int, cmts string, state *model.State, docsis *model.DocsisVersion, single *bool, rdsEnable bool) int
-		ByMac              func(childComplexity int, macAddress []string, rdsEnable bool) int
-		ByPoller           func(childComplexity int, poller model.PollerType, cmts string, state *model.State, docsis *model.DocsisVersion, rdsEnable bool) int
+		ByCmts             func(childComplexity int, cmts string, state *model.State, docsis *model.DocsisVersion, single *bool) int
+		ByMac              func(childComplexity int, macAddress []string) int
+		ByPoller           func(childComplexity int, poller model.PollerType, cmts string, state *model.State, docsis *model.DocsisVersion) int
 		HistoricalCm       func(childComplexity int, mac []string) int
 		HistoricalRegState func(childComplexity int, mac []string, period model.HistoricalPeriod) int
 		Paged              func(childComplexity int, filter *model.CableModemsFilter, first *int32, after *string) int
@@ -183,9 +183,9 @@ type ComplexityRoot struct {
 }
 
 type CableModemsResolver interface {
-	ByMac(ctx context.Context, obj *cablemodems.CableModems, macAddress []string, rdsEnable bool) ([]*model.CableModem, error)
-	ByCmts(ctx context.Context, obj *cablemodems.CableModems, cmts string, state *model.State, docsis *model.DocsisVersion, single *bool, rdsEnable bool) ([]*model.CableModem, error)
-	ByPoller(ctx context.Context, obj *cablemodems.CableModems, poller model.PollerType, cmts string, state *model.State, docsis *model.DocsisVersion, rdsEnable bool) ([]*model.CableModem, error)
+	ByMac(ctx context.Context, obj *cablemodems.CableModems, macAddress []string) ([]*model.CableModem, error)
+	ByCmts(ctx context.Context, obj *cablemodems.CableModems, cmts string, state *model.State, docsis *model.DocsisVersion, single *bool) ([]*model.CableModem, error)
+	ByPoller(ctx context.Context, obj *cablemodems.CableModems, poller model.PollerType, cmts string, state *model.State, docsis *model.DocsisVersion) ([]*model.CableModem, error)
 	Paged(ctx context.Context, obj *cablemodems.CableModems, filter *model.CableModemsFilter, first *int32, after *string) (*model.CableModemsConnection, error)
 	HistoricalRegState(ctx context.Context, obj *cablemodems.CableModems, mac []string, period model.HistoricalPeriod) ([]*model.TsRegStateDevice, error)
 	HistoricalCm(ctx context.Context, obj *cablemodems.CableModems, mac []string) ([]*model.TsCmDevice, error)
@@ -436,7 +436,7 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.CableModems.ByCmts(childComplexity, args["cmts"].(string), args["state"].(*model.State), args["docsis"].(*model.DocsisVersion), args["single"].(*bool), args["rdsEnable"].(bool)), true
+		return e.complexity.CableModems.ByCmts(childComplexity, args["cmts"].(string), args["state"].(*model.State), args["docsis"].(*model.DocsisVersion), args["single"].(*bool)), true
 
 	case "CableModems.byMac":
 		if e.complexity.CableModems.ByMac == nil {
@@ -448,7 +448,7 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.CableModems.ByMac(childComplexity, args["macAddress"].([]string), args["rdsEnable"].(bool)), true
+		return e.complexity.CableModems.ByMac(childComplexity, args["macAddress"].([]string)), true
 
 	case "CableModems.byPoller":
 		if e.complexity.CableModems.ByPoller == nil {
@@ -460,7 +460,7 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.CableModems.ByPoller(childComplexity, args["poller"].(model.PollerType), args["cmts"].(string), args["state"].(*model.State), args["docsis"].(*model.DocsisVersion), args["rdsEnable"].(bool)), true
+		return e.complexity.CableModems.ByPoller(childComplexity, args["poller"].(model.PollerType), args["cmts"].(string), args["state"].(*model.State), args["docsis"].(*model.DocsisVersion)), true
 
 	case "CableModems.historicalCm":
 		if e.complexity.CableModems.HistoricalCm == nil {
@@ -990,11 +990,6 @@ func (ec *executionContext) field_CableModems_byCmts_args(ctx context.Context, r
 		return nil, err
 	}
 	args["single"] = arg3
-	arg4, err := ec.field_CableModems_byCmts_argsRdsEnable(ctx, rawArgs)
-	if err != nil {
-		return nil, err
-	}
-	args["rdsEnable"] = arg4
 	return args, nil
 }
 func (ec *executionContext) field_CableModems_byCmts_argsCmts(
@@ -1049,19 +1044,6 @@ func (ec *executionContext) field_CableModems_byCmts_argsSingle(
 	return zeroVal, nil
 }
 
-func (ec *executionContext) field_CableModems_byCmts_argsRdsEnable(
-	ctx context.Context,
-	rawArgs map[string]any,
-) (bool, error) {
-	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("rdsEnable"))
-	if tmp, ok := rawArgs["rdsEnable"]; ok {
-		return ec.unmarshalNBoolean2bool(ctx, tmp)
-	}
-
-	var zeroVal bool
-	return zeroVal, nil
-}
-
 func (ec *executionContext) field_CableModems_byMac_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
@@ -1070,11 +1052,6 @@ func (ec *executionContext) field_CableModems_byMac_args(ctx context.Context, ra
 		return nil, err
 	}
 	args["macAddress"] = arg0
-	arg1, err := ec.field_CableModems_byMac_argsRdsEnable(ctx, rawArgs)
-	if err != nil {
-		return nil, err
-	}
-	args["rdsEnable"] = arg1
 	return args, nil
 }
 func (ec *executionContext) field_CableModems_byMac_argsMacAddress(
@@ -1087,19 +1064,6 @@ func (ec *executionContext) field_CableModems_byMac_argsMacAddress(
 	}
 
 	var zeroVal []string
-	return zeroVal, nil
-}
-
-func (ec *executionContext) field_CableModems_byMac_argsRdsEnable(
-	ctx context.Context,
-	rawArgs map[string]any,
-) (bool, error) {
-	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("rdsEnable"))
-	if tmp, ok := rawArgs["rdsEnable"]; ok {
-		return ec.unmarshalNBoolean2bool(ctx, tmp)
-	}
-
-	var zeroVal bool
 	return zeroVal, nil
 }
 
@@ -1126,11 +1090,6 @@ func (ec *executionContext) field_CableModems_byPoller_args(ctx context.Context,
 		return nil, err
 	}
 	args["docsis"] = arg3
-	arg4, err := ec.field_CableModems_byPoller_argsRdsEnable(ctx, rawArgs)
-	if err != nil {
-		return nil, err
-	}
-	args["rdsEnable"] = arg4
 	return args, nil
 }
 func (ec *executionContext) field_CableModems_byPoller_argsPoller(
@@ -1182,19 +1141,6 @@ func (ec *executionContext) field_CableModems_byPoller_argsDocsis(
 	}
 
 	var zeroVal *model.DocsisVersion
-	return zeroVal, nil
-}
-
-func (ec *executionContext) field_CableModems_byPoller_argsRdsEnable(
-	ctx context.Context,
-	rawArgs map[string]any,
-) (bool, error) {
-	ctx = graphql.WithPathContext(ctx, graphql.NewPathWithField("rdsEnable"))
-	if tmp, ok := rawArgs["rdsEnable"]; ok {
-		return ec.unmarshalNBoolean2bool(ctx, tmp)
-	}
-
-	var zeroVal bool
 	return zeroVal, nil
 }
 
@@ -2714,7 +2660,7 @@ func (ec *executionContext) _CableModems_byMac(ctx context.Context, field graphq
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.CableModems().ByMac(rctx, obj, fc.Args["macAddress"].([]string), fc.Args["rdsEnable"].(bool))
+		return ec.resolvers.CableModems().ByMac(rctx, obj, fc.Args["macAddress"].([]string))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -2831,7 +2777,7 @@ func (ec *executionContext) _CableModems_byCmts(ctx context.Context, field graph
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.CableModems().ByCmts(rctx, obj, fc.Args["cmts"].(string), fc.Args["state"].(*model.State), fc.Args["docsis"].(*model.DocsisVersion), fc.Args["single"].(*bool), fc.Args["rdsEnable"].(bool))
+		return ec.resolvers.CableModems().ByCmts(rctx, obj, fc.Args["cmts"].(string), fc.Args["state"].(*model.State), fc.Args["docsis"].(*model.DocsisVersion), fc.Args["single"].(*bool))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -2948,7 +2894,7 @@ func (ec *executionContext) _CableModems_byPoller(ctx context.Context, field gra
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (any, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.CableModems().ByPoller(rctx, obj, fc.Args["poller"].(model.PollerType), fc.Args["cmts"].(string), fc.Args["state"].(*model.State), fc.Args["docsis"].(*model.DocsisVersion), fc.Args["rdsEnable"].(bool))
+		return ec.resolvers.CableModems().ByPoller(rctx, obj, fc.Args["poller"].(model.PollerType), fc.Args["cmts"].(string), fc.Args["state"].(*model.State), fc.Args["docsis"].(*model.DocsisVersion))
 	})
 	if err != nil {
 		ec.Error(ctx, err)

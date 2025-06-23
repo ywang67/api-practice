@@ -12,17 +12,17 @@ import (
 )
 
 // ByMac is the resolver for the byMac field.
-func (r *cableModemsResolver) ByMac(ctx context.Context, obj *cablemodems.CableModems, macAddress []string, rdsEnable bool) ([]*model.CableModem, error) {
+func (r *cableModemsResolver) ByMac(ctx context.Context, obj *cablemodems.CableModems, macAddress []string) ([]*model.CableModem, error) {
 	panic(fmt.Errorf("not implemented: ByMac - byMac"))
 }
 
 // ByCmts is the resolver for the byCmts field.
-func (r *cableModemsResolver) ByCmts(ctx context.Context, obj *cablemodems.CableModems, cmts string, state *model.State, docsis *model.DocsisVersion, single *bool, rdsEnable bool) ([]*model.CableModem, error) {
+func (r *cableModemsResolver) ByCmts(ctx context.Context, obj *cablemodems.CableModems, cmts string, state *model.State, docsis *model.DocsisVersion, single *bool) ([]*model.CableModem, error) {
 	panic(fmt.Errorf("not implemented: ByCmts - byCmts"))
 }
 
 // ByPoller is the resolver for the byPoller field.
-func (r *cableModemsResolver) ByPoller(ctx context.Context, obj *cablemodems.CableModems, poller model.PollerType, cmts string, state *model.State, docsis *model.DocsisVersion, rdsEnable bool) ([]*model.CableModem, error) {
+func (r *cableModemsResolver) ByPoller(ctx context.Context, obj *cablemodems.CableModems, poller model.PollerType, cmts string, state *model.State, docsis *model.DocsisVersion) ([]*model.CableModem, error) {
 	panic(fmt.Errorf("not implemented: ByPoller - byPoller"))
 }
 

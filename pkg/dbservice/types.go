@@ -7,9 +7,7 @@ type DbServiceInterface interface {
 }
 
 type DataBaseService struct {
-	DbConn DbServiceInterface
-}
-
-func (dbs *DataBaseService) RegisterDbConn() (*sql.DB, error) {
-	return dbs.DbConn.CreateDbConn()
+	db       DbServiceInterface
+	DbReader *sql.DB
+	DbWriter *sql.DB
 }

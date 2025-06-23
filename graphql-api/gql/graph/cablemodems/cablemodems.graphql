@@ -1,18 +1,16 @@
 type CableModems {
-  byMac(macAddress: [String!]!, rdsEnable: Boolean! = true): [CableModem!]!
+  byMac(macAddress: [String!]!): [CableModem!]!
   byCmts(
     cmts: String!
     state: State
     docsis: DocsisVersion
     single: Boolean = false
-    rdsEnable: Boolean! = true
   ): [CableModem!]!
   byPoller(
     poller: PollerType!,
     cmts: String!,
     state: State,
     docsis: DocsisVersion,
-    rdsEnable: Boolean! = true
   ): [CableModem!]!
   paged(
     "filter dataset using fqdn(Required) + macDomain(Optional), ppodName, Array of macAddress...."
