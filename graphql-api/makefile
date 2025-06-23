@@ -1,5 +1,5 @@
 dev-server:
-	go run main.go
+	DEBUG=true LOCAL=true go run main.go
 
 gen:
 	go generate ./...
