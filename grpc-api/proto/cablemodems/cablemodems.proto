@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+package cablemodems;
+
+option go_package = "api-project/grpc-api/gen/cablemodems;cablemodems";
+
+import "common/common.proto";
+
+service CableModemService {
+  rpc ByMac(ByMacRequest) returns (ByMacResponse);
+  rpc ByCmts(ByCmtsRequest) returns (ByCmtsResponse);
+  rpc ByPoller(ByPollerRequest) returns (ByPollerResponse);
+  rpc Paged(PagedRequest) returns (PagedResponse);
+  rpc HistoricalRegState(HistoricalRegStateRequest) returns (HistoricalRegStateResponse);
+  rpc HistoricalCm(HistoricalCmRequest) returns (HistoricalCmResponse);
+}
+
+message ByMacRequest {
+  repeated string mac_address = 1;
+}
+message ByMacResponse {
+  repeated CableModem modems = 1;
+  common.Error error = 2;
+}
+
+message ByCmtsRequest {
+  string cmts = 1;
+  State state = 2;
+  DocsisVersion docsis = 3;
+  bool single = 4;
+}
+message ByCmtsResponse {
+  repeated CableModem modems = 1;
+  common.Error error = 2;
+}
+
+message ByPollerRequest {
+  string poller = 1;
+  string cmts = 2;
+  State state = 3;
+  DocsisVersion docsis = 4;
+}
+message ByPollerResponse {
+  repeated CableModem modems = 1;
+  common.Error error = 2;
+}
+
+message PagedRequest {
+  CableModemsFilter filter = 1;
+  int32 first = 2;
+  string after = 3;
+}
+message PagedResponse {
+  repeated CableModem modems = 1;
+  string next_cursor = 2;
+  common.Error error = 3;
+}
+
+message HistoricalRegStateRequest {
+  repeated string mac = 1;
+  string period = 2;
+}
+message HistoricalRegStateResponse {
+  repeated TsRegStateDevice devices = 1;
+  common.Error error = 2;
+}
+
+message HistoricalCmRequest {
+  repeated string mac = 1;
+}
+message HistoricalCmResponse {
+  repeated TsCmDevice devices = 1;
+  common.Error error = 2;
+}
+
+message CableModemsFilter {
+  string fqdn = 1;
+  string mac_domain = 2;
+  string ppod_name = 3;
+  repeated string mac_address = 4;
+}
+
+message CableModem {
+  string mac = 1;
+  string cpe_mac = 2;
+  string mac_domain = 3;
+  int32 cable_modem_index = 4;
+  string config_file = 5;
+  string model = 6;
+  string fiber_node = 7;
+  string ipv4 = 8;
+  string ipv6 = 9;
+  string cpe_ipv4 = 10;
+  string transponder = 11;
+  DocsisVersion docsis_version = 12;
+  string ppod = 13;
+  string fqdn = 14;
+  State state = 15;
+  string not_found_date = 16;
+  int32 reg_state = 17;
+  string fn_name = 18;
+  int32 number_of_generators = 19;
+  string rpd_name = 20;
+  string updated_at = 21;
+  string bootr = 22;
+  string vendor = 23;
+  string sw_rev = 24;
+  string olt_name = 25;
+  string pon_name = 26;
+  int64 updated_at_ts = 27;
+  bool is_cpe = 28;
+  string cmts_type = 29;
+  int32 device_type = 30;
+}
+
+message TsRegStateDevice {
+  string mac = 1;
+  string reg_state = 2;
+  int64 timestamp = 3;
+}
+
+message TsCmDevice {
+  string mac = 1;
+  string status = 2;
+  int64 timestamp = 3;
+}
+
+enum State {
+  UNKNOWN = 0;
+  ONLINE = 1;
+  OFFLINE = 2;
+}
+
+enum DocsisVersion {
+  DOCSIS_UNKNOWN = 0;
+  DOCSIS3 = 1;
+  DOCSIS31 = 2;
+  DOCSIS4 = 3;
+}
