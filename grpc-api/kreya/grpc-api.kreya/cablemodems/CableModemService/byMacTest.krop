@@ -1,0 +1,15 @@
+{
+  "details": {
+    "endpoint": "http://localhost:50051",
+    "methodFqn": "cablemodems.CableModemService.ByMac",
+    "disableServerCertificateValidation": true
+  },
+  "requests": [
+    {
+      "location": "byMacTest-request.json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "grpc",
+  "importStreamId": "ae276522-8cc2-43c8-8535-bfc3872f7db3"
+}
