@@ -82,35 +82,35 @@ message CableModemsFilter {
 
 message CableModem {
   string mac = 1;
-  string cpe_mac = 2;
-  string mac_domain = 3;
-  int32 cable_modem_index = 4;
-  string config_file = 5;
-  string model = 6;
-  string fiber_node = 7;
-  string ipv4 = 8;
-  string ipv6 = 9;
-  string cpe_ipv4 = 10;
-  string transponder = 11;
-  DocsisVersion docsis_version = 12;
-  string ppod = 13;
-  string fqdn = 14;
-  State state = 15;
-  string not_found_date = 16;
-  int32 reg_state = 17;
-  string fn_name = 18;
-  int32 number_of_generators = 19;
-  string rpd_name = 20;
-  string updated_at = 21;
-  string bootr = 22;
-  string vendor = 23;
-  string sw_rev = 24;
-  string olt_name = 25;
-  string pon_name = 26;
-  int64 updated_at_ts = 27;
-  bool is_cpe = 28;
-  string cmts_type = 29;
-  int32 device_type = 30;
+  optional string cpe_mac = 2;
+  optional string mac_domain = 3;
+  optional int32 cable_modem_index = 4;
+  optional string config_file = 5;
+  optional string model = 6;
+  optional string fiber_node = 7;
+  optional string ipv4 = 8;
+  optional string ipv6 = 9;
+  optional string cpe_ipv4 = 10;
+  optional string transponder = 11;
+  optional DocsisVersion docsis_version = 12;
+  optional string ppod = 13;
+  optional string fqdn = 14;
+  optional State state = 15;
+  optional string not_found_date = 16;
+  optional int32 reg_state = 17;
+  optional string fn_name = 18;
+  optional int32 number_of_generators = 19;
+  optional string rpd_name = 20;
+  optional string updated_at = 21;
+  optional string bootr = 22;
+  optional string vendor = 23;
+  optional string sw_rev = 24;
+  optional string olt_name = 25;
+  optional string pon_name = 26;
+  optional int64 updated_at_ts = 27;
+  optional bool is_cpe = 28;
+  optional string cmts_type = 29;
+  optional int32 device_type = 30;
 }
 
 message TsRegStateDevice {

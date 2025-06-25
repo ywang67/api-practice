@@ -18,8 +18,10 @@ clean:
 
 dev-server:
 	@echo "Starting gRPC server with auto-reload..."
-	reflex -r '^(server|methods|proto|gen)/.*\.go$$' --start-service -- go run server/*.go
+	reflex -r '^(server|methods|proto|gen)/.*\.go$$' --start-service -- \
+		env DEBUG=true LOCAL=true go run server/*.go
 
 dev-client:
 	@echo "Starting gRPC client with auto-reload..."
-	reflex -r '^client/.*\.go$$' --start-service -- go run client/*.go
+	reflex -r '^client/.*\.go$$' --start-service -- \
+		env DEBUG=true LOCAL=true go run client/*.go

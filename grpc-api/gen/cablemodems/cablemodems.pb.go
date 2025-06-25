@@ -850,35 +850,35 @@ func (x *CableModemsFilter) GetMacAddress() []string {
 type CableModem struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Mac                string                 `protobuf:"bytes,1,opt,name=mac,proto3" json:"mac,omitempty"`
-	CpeMac             string                 `protobuf:"bytes,2,opt,name=cpe_mac,json=cpeMac,proto3" json:"cpe_mac,omitempty"`
-	MacDomain          string                 `protobuf:"bytes,3,opt,name=mac_domain,json=macDomain,proto3" json:"mac_domain,omitempty"`
-	CableModemIndex    int32                  `protobuf:"varint,4,opt,name=cable_modem_index,json=cableModemIndex,proto3" json:"cable_modem_index,omitempty"`
-	ConfigFile         string                 `protobuf:"bytes,5,opt,name=config_file,json=configFile,proto3" json:"config_file,omitempty"`
-	Model              string                 `protobuf:"bytes,6,opt,name=model,proto3" json:"model,omitempty"`
-	FiberNode          string                 `protobuf:"bytes,7,opt,name=fiber_node,json=fiberNode,proto3" json:"fiber_node,omitempty"`
-	Ipv4               string                 `protobuf:"bytes,8,opt,name=ipv4,proto3" json:"ipv4,omitempty"`
-	Ipv6               string                 `protobuf:"bytes,9,opt,name=ipv6,proto3" json:"ipv6,omitempty"`
-	CpeIpv4            string                 `protobuf:"bytes,10,opt,name=cpe_ipv4,json=cpeIpv4,proto3" json:"cpe_ipv4,omitempty"`
-	Transponder        string                 `protobuf:"bytes,11,opt,name=transponder,proto3" json:"transponder,omitempty"`
-	DocsisVersion      DocsisVersion          `protobuf:"varint,12,opt,name=docsis_version,json=docsisVersion,proto3,enum=cablemodems.DocsisVersion" json:"docsis_version,omitempty"`
-	Ppod               string                 `protobuf:"bytes,13,opt,name=ppod,proto3" json:"ppod,omitempty"`
-	Fqdn               string                 `protobuf:"bytes,14,opt,name=fqdn,proto3" json:"fqdn,omitempty"`
-	State              State                  `protobuf:"varint,15,opt,name=state,proto3,enum=cablemodems.State" json:"state,omitempty"`
-	NotFoundDate       string                 `protobuf:"bytes,16,opt,name=not_found_date,json=notFoundDate,proto3" json:"not_found_date,omitempty"`
-	RegState           int32                  `protobuf:"varint,17,opt,name=reg_state,json=regState,proto3" json:"reg_state,omitempty"`
-	FnName             string                 `protobuf:"bytes,18,opt,name=fn_name,json=fnName,proto3" json:"fn_name,omitempty"`
-	NumberOfGenerators int32                  `protobuf:"varint,19,opt,name=number_of_generators,json=numberOfGenerators,proto3" json:"number_of_generators,omitempty"`
-	RpdName            string                 `protobuf:"bytes,20,opt,name=rpd_name,json=rpdName,proto3" json:"rpd_name,omitempty"`
-	UpdatedAt          string                 `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Bootr              string                 `protobuf:"bytes,22,opt,name=bootr,proto3" json:"bootr,omitempty"`
-	Vendor             string                 `protobuf:"bytes,23,opt,name=vendor,proto3" json:"vendor,omitempty"`
-	SwRev              string                 `protobuf:"bytes,24,opt,name=sw_rev,json=swRev,proto3" json:"sw_rev,omitempty"`
-	OltName            string                 `protobuf:"bytes,25,opt,name=olt_name,json=oltName,proto3" json:"olt_name,omitempty"`
-	PonName            string                 `protobuf:"bytes,26,opt,name=pon_name,json=ponName,proto3" json:"pon_name,omitempty"`
-	UpdatedAtTs        int64                  `protobuf:"varint,27,opt,name=updated_at_ts,json=updatedAtTs,proto3" json:"updated_at_ts,omitempty"`
-	IsCpe              bool                   `protobuf:"varint,28,opt,name=is_cpe,json=isCpe,proto3" json:"is_cpe,omitempty"`
-	CmtsType           string                 `protobuf:"bytes,29,opt,name=cmts_type,json=cmtsType,proto3" json:"cmts_type,omitempty"`
-	DeviceType         int32                  `protobuf:"varint,30,opt,name=device_type,json=deviceType,proto3" json:"device_type,omitempty"`
+	CpeMac             *string                `protobuf:"bytes,2,opt,name=cpe_mac,json=cpeMac,proto3,oneof" json:"cpe_mac,omitempty"`
+	MacDomain          *string                `protobuf:"bytes,3,opt,name=mac_domain,json=macDomain,proto3,oneof" json:"mac_domain,omitempty"`
+	CableModemIndex    *int32                 `protobuf:"varint,4,opt,name=cable_modem_index,json=cableModemIndex,proto3,oneof" json:"cable_modem_index,omitempty"`
+	ConfigFile         *string                `protobuf:"bytes,5,opt,name=config_file,json=configFile,proto3,oneof" json:"config_file,omitempty"`
+	Model              *string                `protobuf:"bytes,6,opt,name=model,proto3,oneof" json:"model,omitempty"`
+	FiberNode          *string                `protobuf:"bytes,7,opt,name=fiber_node,json=fiberNode,proto3,oneof" json:"fiber_node,omitempty"`
+	Ipv4               *string                `protobuf:"bytes,8,opt,name=ipv4,proto3,oneof" json:"ipv4,omitempty"`
+	Ipv6               *string                `protobuf:"bytes,9,opt,name=ipv6,proto3,oneof" json:"ipv6,omitempty"`
+	CpeIpv4            *string                `protobuf:"bytes,10,opt,name=cpe_ipv4,json=cpeIpv4,proto3,oneof" json:"cpe_ipv4,omitempty"`
+	Transponder        *string                `protobuf:"bytes,11,opt,name=transponder,proto3,oneof" json:"transponder,omitempty"`
+	DocsisVersion      *DocsisVersion         `protobuf:"varint,12,opt,name=docsis_version,json=docsisVersion,proto3,enum=cablemodems.DocsisVersion,oneof" json:"docsis_version,omitempty"`
+	Ppod               *string                `protobuf:"bytes,13,opt,name=ppod,proto3,oneof" json:"ppod,omitempty"`
+	Fqdn               *string                `protobuf:"bytes,14,opt,name=fqdn,proto3,oneof" json:"fqdn,omitempty"`
+	State              *State                 `protobuf:"varint,15,opt,name=state,proto3,enum=cablemodems.State,oneof" json:"state,omitempty"`
+	NotFoundDate       *string                `protobuf:"bytes,16,opt,name=not_found_date,json=notFoundDate,proto3,oneof" json:"not_found_date,omitempty"`
+	RegState           *int32                 `protobuf:"varint,17,opt,name=reg_state,json=regState,proto3,oneof" json:"reg_state,omitempty"`
+	FnName             *string                `protobuf:"bytes,18,opt,name=fn_name,json=fnName,proto3,oneof" json:"fn_name,omitempty"`
+	NumberOfGenerators *int32                 `protobuf:"varint,19,opt,name=number_of_generators,json=numberOfGenerators,proto3,oneof" json:"number_of_generators,omitempty"`
+	RpdName            *string                `protobuf:"bytes,20,opt,name=rpd_name,json=rpdName,proto3,oneof" json:"rpd_name,omitempty"`
+	UpdatedAt          *string                `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3,oneof" json:"updated_at,omitempty"`
+	Bootr              *string                `protobuf:"bytes,22,opt,name=bootr,proto3,oneof" json:"bootr,omitempty"`
+	Vendor             *string                `protobuf:"bytes,23,opt,name=vendor,proto3,oneof" json:"vendor,omitempty"`
+	SwRev              *string                `protobuf:"bytes,24,opt,name=sw_rev,json=swRev,proto3,oneof" json:"sw_rev,omitempty"`
+	OltName            *string                `protobuf:"bytes,25,opt,name=olt_name,json=oltName,proto3,oneof" json:"olt_name,omitempty"`
+	PonName            *string                `protobuf:"bytes,26,opt,name=pon_name,json=ponName,proto3,oneof" json:"pon_name,omitempty"`
+	UpdatedAtTs        *int64                 `protobuf:"varint,27,opt,name=updated_at_ts,json=updatedAtTs,proto3,oneof" json:"updated_at_ts,omitempty"`
+	IsCpe              *bool                  `protobuf:"varint,28,opt,name=is_cpe,json=isCpe,proto3,oneof" json:"is_cpe,omitempty"`
+	CmtsType           *string                `protobuf:"bytes,29,opt,name=cmts_type,json=cmtsType,proto3,oneof" json:"cmts_type,omitempty"`
+	DeviceType         *int32                 `protobuf:"varint,30,opt,name=device_type,json=deviceType,proto3,oneof" json:"device_type,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -921,204 +921,204 @@ func (x *CableModem) GetMac() string {
 }
 
 func (x *CableModem) GetCpeMac() string {
-	if x != nil {
-		return x.CpeMac
+	if x != nil && x.CpeMac != nil {
+		return *x.CpeMac
 	}
 	return ""
 }
 
 func (x *CableModem) GetMacDomain() string {
-	if x != nil {
-		return x.MacDomain
+	if x != nil && x.MacDomain != nil {
+		return *x.MacDomain
 	}
 	return ""
 }
 
 func (x *CableModem) GetCableModemIndex() int32 {
-	if x != nil {
-		return x.CableModemIndex
+	if x != nil && x.CableModemIndex != nil {
+		return *x.CableModemIndex
 	}
 	return 0
 }
 
 func (x *CableModem) GetConfigFile() string {
-	if x != nil {
-		return x.ConfigFile
+	if x != nil && x.ConfigFile != nil {
+		return *x.ConfigFile
 	}
 	return ""
 }
 
 func (x *CableModem) GetModel() string {
-	if x != nil {
-		return x.Model
+	if x != nil && x.Model != nil {
+		return *x.Model
 	}
 	return ""
 }
 
 func (x *CableModem) GetFiberNode() string {
-	if x != nil {
-		return x.FiberNode
+	if x != nil && x.FiberNode != nil {
+		return *x.FiberNode
 	}
 	return ""
 }
 
 func (x *CableModem) GetIpv4() string {
-	if x != nil {
-		return x.Ipv4
+	if x != nil && x.Ipv4 != nil {
+		return *x.Ipv4
 	}
 	return ""
 }
 
 func (x *CableModem) GetIpv6() string {
-	if x != nil {
-		return x.Ipv6
+	if x != nil && x.Ipv6 != nil {
+		return *x.Ipv6
 	}
 	return ""
 }
 
 func (x *CableModem) GetCpeIpv4() string {
-	if x != nil {
-		return x.CpeIpv4
+	if x != nil && x.CpeIpv4 != nil {
+		return *x.CpeIpv4
 	}
 	return ""
 }
 
 func (x *CableModem) GetTransponder() string {
-	if x != nil {
-		return x.Transponder
+	if x != nil && x.Transponder != nil {
+		return *x.Transponder
 	}
 	return ""
 }
 
 func (x *CableModem) GetDocsisVersion() DocsisVersion {
-	if x != nil {
-		return x.DocsisVersion
+	if x != nil && x.DocsisVersion != nil {
+		return *x.DocsisVersion
 	}
 	return DocsisVersion_DOCSIS_UNKNOWN
 }
 
 func (x *CableModem) GetPpod() string {
-	if x != nil {
-		return x.Ppod
+	if x != nil && x.Ppod != nil {
+		return *x.Ppod
 	}
 	return ""
 }
 
 func (x *CableModem) GetFqdn() string {
-	if x != nil {
-		return x.Fqdn
+	if x != nil && x.Fqdn != nil {
+		return *x.Fqdn
 	}
 	return ""
 }
 
 func (x *CableModem) GetState() State {
-	if x != nil {
-		return x.State
+	if x != nil && x.State != nil {
+		return *x.State
 	}
 	return State_UNKNOWN
 }
 
 func (x *CableModem) GetNotFoundDate() string {
-	if x != nil {
-		return x.NotFoundDate
+	if x != nil && x.NotFoundDate != nil {
+		return *x.NotFoundDate
 	}
 	return ""
 }
 
 func (x *CableModem) GetRegState() int32 {
-	if x != nil {
-		return x.RegState
+	if x != nil && x.RegState != nil {
+		return *x.RegState
 	}
 	return 0
 }
 
 func (x *CableModem) GetFnName() string {
-	if x != nil {
-		return x.FnName
+	if x != nil && x.FnName != nil {
+		return *x.FnName
 	}
 	return ""
 }
 
 func (x *CableModem) GetNumberOfGenerators() int32 {
-	if x != nil {
-		return x.NumberOfGenerators
+	if x != nil && x.NumberOfGenerators != nil {
+		return *x.NumberOfGenerators
 	}
 	return 0
 }
 
 func (x *CableModem) GetRpdName() string {
-	if x != nil {
-		return x.RpdName
+	if x != nil && x.RpdName != nil {
+		return *x.RpdName
 	}
 	return ""
 }
 
 func (x *CableModem) GetUpdatedAt() string {
-	if x != nil {
-		return x.UpdatedAt
+	if x != nil && x.UpdatedAt != nil {
+		return *x.UpdatedAt
 	}
 	return ""
 }
 
 func (x *CableModem) GetBootr() string {
-	if x != nil {
-		return x.Bootr
+	if x != nil && x.Bootr != nil {
+		return *x.Bootr
 	}
 	return ""
 }
 
 func (x *CableModem) GetVendor() string {
-	if x != nil {
-		return x.Vendor
+	if x != nil && x.Vendor != nil {
+		return *x.Vendor
 	}
 	return ""
 }
 
 func (x *CableModem) GetSwRev() string {
-	if x != nil {
-		return x.SwRev
+	if x != nil && x.SwRev != nil {
+		return *x.SwRev
 	}
 	return ""
 }
 
 func (x *CableModem) GetOltName() string {
-	if x != nil {
-		return x.OltName
+	if x != nil && x.OltName != nil {
+		return *x.OltName
 	}
 	return ""
 }
 
 func (x *CableModem) GetPonName() string {
-	if x != nil {
-		return x.PonName
+	if x != nil && x.PonName != nil {
+		return *x.PonName
 	}
 	return ""
 }
 
 func (x *CableModem) GetUpdatedAtTs() int64 {
-	if x != nil {
-		return x.UpdatedAtTs
+	if x != nil && x.UpdatedAtTs != nil {
+		return *x.UpdatedAtTs
 	}
 	return 0
 }
 
 func (x *CableModem) GetIsCpe() bool {
-	if x != nil {
-		return x.IsCpe
+	if x != nil && x.IsCpe != nil {
+		return *x.IsCpe
 	}
 	return false
 }
 
 func (x *CableModem) GetCmtsType() string {
-	if x != nil {
-		return x.CmtsType
+	if x != nil && x.CmtsType != nil {
+		return *x.CmtsType
 	}
 	return ""
 }
 
 func (x *CableModem) GetDeviceType() int32 {
-	if x != nil {
-		return x.DeviceType
+	if x != nil && x.DeviceType != nil {
+		return *x.DeviceType
 	}
 	return 0
 }
@@ -1296,45 +1296,79 @@ const file_cablemodems_cablemodems_proto_rawDesc = "" +
 	"mac_domain\x18\x02 \x01(\tR\tmacDomain\x12\x1b\n" +
 	"\tppod_name\x18\x03 \x01(\tR\bppodName\x12\x1f\n" +
 	"\vmac_address\x18\x04 \x03(\tR\n" +
-	"macAddress\"\x8e\a\n" +
+	"macAddress\"\xae\v\n" +
 	"\n" +
 	"CableModem\x12\x10\n" +
-	"\x03mac\x18\x01 \x01(\tR\x03mac\x12\x17\n" +
-	"\acpe_mac\x18\x02 \x01(\tR\x06cpeMac\x12\x1d\n" +
+	"\x03mac\x18\x01 \x01(\tR\x03mac\x12\x1c\n" +
+	"\acpe_mac\x18\x02 \x01(\tH\x00R\x06cpeMac\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"mac_domain\x18\x03 \x01(\tR\tmacDomain\x12*\n" +
-	"\x11cable_modem_index\x18\x04 \x01(\x05R\x0fcableModemIndex\x12\x1f\n" +
-	"\vconfig_file\x18\x05 \x01(\tR\n" +
-	"configFile\x12\x14\n" +
-	"\x05model\x18\x06 \x01(\tR\x05model\x12\x1d\n" +
+	"mac_domain\x18\x03 \x01(\tH\x01R\tmacDomain\x88\x01\x01\x12/\n" +
+	"\x11cable_modem_index\x18\x04 \x01(\x05H\x02R\x0fcableModemIndex\x88\x01\x01\x12$\n" +
+	"\vconfig_file\x18\x05 \x01(\tH\x03R\n" +
+	"configFile\x88\x01\x01\x12\x19\n" +
+	"\x05model\x18\x06 \x01(\tH\x04R\x05model\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"fiber_node\x18\a \x01(\tR\tfiberNode\x12\x12\n" +
-	"\x04ipv4\x18\b \x01(\tR\x04ipv4\x12\x12\n" +
-	"\x04ipv6\x18\t \x01(\tR\x04ipv6\x12\x19\n" +
+	"fiber_node\x18\a \x01(\tH\x05R\tfiberNode\x88\x01\x01\x12\x17\n" +
+	"\x04ipv4\x18\b \x01(\tH\x06R\x04ipv4\x88\x01\x01\x12\x17\n" +
+	"\x04ipv6\x18\t \x01(\tH\aR\x04ipv6\x88\x01\x01\x12\x1e\n" +
 	"\bcpe_ipv4\x18\n" +
-	" \x01(\tR\acpeIpv4\x12 \n" +
-	"\vtransponder\x18\v \x01(\tR\vtransponder\x12A\n" +
-	"\x0edocsis_version\x18\f \x01(\x0e2\x1a.cablemodems.DocsisVersionR\rdocsisVersion\x12\x12\n" +
-	"\x04ppod\x18\r \x01(\tR\x04ppod\x12\x12\n" +
-	"\x04fqdn\x18\x0e \x01(\tR\x04fqdn\x12(\n" +
-	"\x05state\x18\x0f \x01(\x0e2\x12.cablemodems.StateR\x05state\x12$\n" +
-	"\x0enot_found_date\x18\x10 \x01(\tR\fnotFoundDate\x12\x1b\n" +
-	"\treg_state\x18\x11 \x01(\x05R\bregState\x12\x17\n" +
-	"\afn_name\x18\x12 \x01(\tR\x06fnName\x120\n" +
-	"\x14number_of_generators\x18\x13 \x01(\x05R\x12numberOfGenerators\x12\x19\n" +
-	"\brpd_name\x18\x14 \x01(\tR\arpdName\x12\x1d\n" +
+	" \x01(\tH\bR\acpeIpv4\x88\x01\x01\x12%\n" +
+	"\vtransponder\x18\v \x01(\tH\tR\vtransponder\x88\x01\x01\x12F\n" +
+	"\x0edocsis_version\x18\f \x01(\x0e2\x1a.cablemodems.DocsisVersionH\n" +
+	"R\rdocsisVersion\x88\x01\x01\x12\x17\n" +
+	"\x04ppod\x18\r \x01(\tH\vR\x04ppod\x88\x01\x01\x12\x17\n" +
+	"\x04fqdn\x18\x0e \x01(\tH\fR\x04fqdn\x88\x01\x01\x12-\n" +
+	"\x05state\x18\x0f \x01(\x0e2\x12.cablemodems.StateH\rR\x05state\x88\x01\x01\x12)\n" +
+	"\x0enot_found_date\x18\x10 \x01(\tH\x0eR\fnotFoundDate\x88\x01\x01\x12 \n" +
+	"\treg_state\x18\x11 \x01(\x05H\x0fR\bregState\x88\x01\x01\x12\x1c\n" +
+	"\afn_name\x18\x12 \x01(\tH\x10R\x06fnName\x88\x01\x01\x125\n" +
+	"\x14number_of_generators\x18\x13 \x01(\x05H\x11R\x12numberOfGenerators\x88\x01\x01\x12\x1e\n" +
+	"\brpd_name\x18\x14 \x01(\tH\x12R\arpdName\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"updated_at\x18\x15 \x01(\tR\tupdatedAt\x12\x14\n" +
-	"\x05bootr\x18\x16 \x01(\tR\x05bootr\x12\x16\n" +
-	"\x06vendor\x18\x17 \x01(\tR\x06vendor\x12\x15\n" +
-	"\x06sw_rev\x18\x18 \x01(\tR\x05swRev\x12\x19\n" +
-	"\bolt_name\x18\x19 \x01(\tR\aoltName\x12\x19\n" +
-	"\bpon_name\x18\x1a \x01(\tR\aponName\x12\"\n" +
-	"\rupdated_at_ts\x18\x1b \x01(\x03R\vupdatedAtTs\x12\x15\n" +
-	"\x06is_cpe\x18\x1c \x01(\bR\x05isCpe\x12\x1b\n" +
-	"\tcmts_type\x18\x1d \x01(\tR\bcmtsType\x12\x1f\n" +
-	"\vdevice_type\x18\x1e \x01(\x05R\n" +
-	"deviceType\"_\n" +
+	"updated_at\x18\x15 \x01(\tH\x13R\tupdatedAt\x88\x01\x01\x12\x19\n" +
+	"\x05bootr\x18\x16 \x01(\tH\x14R\x05bootr\x88\x01\x01\x12\x1b\n" +
+	"\x06vendor\x18\x17 \x01(\tH\x15R\x06vendor\x88\x01\x01\x12\x1a\n" +
+	"\x06sw_rev\x18\x18 \x01(\tH\x16R\x05swRev\x88\x01\x01\x12\x1e\n" +
+	"\bolt_name\x18\x19 \x01(\tH\x17R\aoltName\x88\x01\x01\x12\x1e\n" +
+	"\bpon_name\x18\x1a \x01(\tH\x18R\aponName\x88\x01\x01\x12'\n" +
+	"\rupdated_at_ts\x18\x1b \x01(\x03H\x19R\vupdatedAtTs\x88\x01\x01\x12\x1a\n" +
+	"\x06is_cpe\x18\x1c \x01(\bH\x1aR\x05isCpe\x88\x01\x01\x12 \n" +
+	"\tcmts_type\x18\x1d \x01(\tH\x1bR\bcmtsType\x88\x01\x01\x12$\n" +
+	"\vdevice_type\x18\x1e \x01(\x05H\x1cR\n" +
+	"deviceType\x88\x01\x01B\n" +
+	"\n" +
+	"\b_cpe_macB\r\n" +
+	"\v_mac_domainB\x14\n" +
+	"\x12_cable_modem_indexB\x0e\n" +
+	"\f_config_fileB\b\n" +
+	"\x06_modelB\r\n" +
+	"\v_fiber_nodeB\a\n" +
+	"\x05_ipv4B\a\n" +
+	"\x05_ipv6B\v\n" +
+	"\t_cpe_ipv4B\x0e\n" +
+	"\f_transponderB\x11\n" +
+	"\x0f_docsis_versionB\a\n" +
+	"\x05_ppodB\a\n" +
+	"\x05_fqdnB\b\n" +
+	"\x06_stateB\x11\n" +
+	"\x0f_not_found_dateB\f\n" +
+	"\n" +
+	"_reg_stateB\n" +
+	"\n" +
+	"\b_fn_nameB\x17\n" +
+	"\x15_number_of_generatorsB\v\n" +
+	"\t_rpd_nameB\r\n" +
+	"\v_updated_atB\b\n" +
+	"\x06_bootrB\t\n" +
+	"\a_vendorB\t\n" +
+	"\a_sw_revB\v\n" +
+	"\t_olt_nameB\v\n" +
+	"\t_pon_nameB\x10\n" +
+	"\x0e_updated_at_tsB\t\n" +
+	"\a_is_cpeB\f\n" +
+	"\n" +
+	"_cmts_typeB\x0e\n" +
+	"\f_device_type\"_\n" +
 	"\x10TsRegStateDevice\x12\x10\n" +
 	"\x03mac\x18\x01 \x01(\tR\x03mac\x12\x1b\n" +
 	"\treg_state\x18\x02 \x01(\tR\bregState\x12\x1c\n" +
@@ -1441,6 +1475,7 @@ func file_cablemodems_cablemodems_proto_init() {
 	if File_cablemodems_cablemodems_proto != nil {
 		return
 	}
+	file_cablemodems_cablemodems_proto_msgTypes[13].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

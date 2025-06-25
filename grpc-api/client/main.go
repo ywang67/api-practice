@@ -14,5 +14,5 @@ func main() {
 	defer conn.Close()
 
 	cmClient := NewCableModemsClient(conn)
-	cmClient.ByMac([]string{"00:11:22:33:44:55"})
+	cmClient.ByMac([]string{"5c:22:da:0e:9f:ab"})
 }

@@ -8,6 +8,7 @@ import (
 
 	"api-project/grpc-api/gen/cablemodems"
 	"api-project/grpc-api/methods"
+	"api-project/pkg/dbservice"
 )
 
 func main() {
@@ -20,8 +21,12 @@ func main() {
 	// 创建 gRPC server 实例
 	grpcServer := grpc.NewServer()
 
+	dbService := dbservice.DbService
+
 	// 注册 CableModemService
-	cablemodems.RegisterCableModemServiceServer(grpcServer, &methods.CableModemMethod{})
+	cablemodems.RegisterCableModemServiceServer(grpcServer, &methods.CableModemMethod{
+		Db: dbService.DbReader,
+	})
 
 	log.Println("gRPC server listening on :50051")
 	// 启动 server
